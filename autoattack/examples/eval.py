@@ -36,8 +36,17 @@ if __name__ == '__main__':
     # load data
     transform_list = [transforms.ToTensor()]
     transform_chain = transforms.Compose(transform_list)
-    item = datasets.CIFAR10(root=args.data_dir, train=False, transform=transform_chain, download=True)
-    test_loader = data.DataLoader(item, batch_size=1000, shuffle=False, num_workers=0)
+    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                     std=[0.229, 0.224, 0.225])
+    valdir = os.path.join(args.data_dir, 'val')
+#     item = datasets.CIFAR10(root=args.data_dir, train=False, transform=transform_chain, download=True)
+    item = datasets.ImageFolder(root=args.data_dir, transform=transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            normalize,
+        ]))
+    test_loader = data.DataLoader(item, batch_size=64, shuffle=False, num_workers=0)
     
     # create save dir
     if not os.path.exists(args.save_dir):
