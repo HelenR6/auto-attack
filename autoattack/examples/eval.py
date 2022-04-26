@@ -5,6 +5,7 @@ import torch.nn as nn
 import torchvision.datasets as datasets
 import torch.utils.data as data
 import torchvision.transforms as transforms
+from load_model import load_model
 
 import sys
 sys.path.insert(0,'..')
@@ -27,9 +28,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # load model
-    model = ResNet18()
-    ckpt = torch.load(args.model)
-    model.load_state_dict(ckpt)
+#     model = ResNet18()
+#     ckpt = torch.load(args.model)
+#     model.load_state_dict(ckpt)
+    model,_ = load_model(args.model)
     model.cuda()
     model.eval()
 
