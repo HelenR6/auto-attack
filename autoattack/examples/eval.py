@@ -16,12 +16,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_dir', type=str, default='./data')
     parser.add_argument('--norm', type=str, default='Linf')
-    parser.add_argument('--epsilon', type=float, default=8./255.)
+    parser.add_argument('--epsilon', type=float, default=4./255.)
     parser.add_argument('--model', type=str, default='./model_test.pt')
-    parser.add_argument('--n_ex', type=int, default=1000)
+    parser.add_argument('--n_ex', type=int, default=500)
     parser.add_argument('--individual', action='store_true')
     parser.add_argument('--save_dir', type=str, default='./results')
-    parser.add_argument('--batch_size', type=int, default=500)
+    parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--log_path', type=str, default='./log_file.txt')
     parser.add_argument('--version', type=str, default='standard')
     
@@ -42,7 +42,7 @@ if __name__ == '__main__':
                                      std=[0.229, 0.224, 0.225])
     valdir = os.path.join(args.data_dir, 'val')
 #     item = datasets.CIFAR10(root=args.data_dir, train=False, transform=transform_chain, download=True)
-    item = datasets.ImageFolder(root=args.data_dir, transform=transforms.Compose([
+    item = datasets.ImageFolder(root="/content/gdrive/MyDrive/imagenet/val", transform=transforms.Compose([
             transforms.Resize(256),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
