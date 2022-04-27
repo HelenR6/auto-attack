@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('--epsilon', type=float, default=4./255.)
     parser.add_argument('--model', type=str, default='./model_test.pt')
     parser.add_argument('--n_ex', type=int, default=500)
-    parser.add_argument('--individual', action='store_true')
+    parser.add_argument('--individual', action='store_false')
     parser.add_argument('--save_dir', type=str, default='./results')
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--log_path', type=str, default='./log_file.txt')
