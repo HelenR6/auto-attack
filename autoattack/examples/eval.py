@@ -75,7 +75,7 @@ if __name__ == '__main__':
         if not args.individual:
             adv_complete = adversary.run_standard_evaluation(x_test[:args.n_ex], y_test[:args.n_ex],
                 bs=args.batch_size)
-            
+            print(adv_complete)
             torch.save({'adv_complete': adv_complete}, '{}/{}_{}_1_{}_eps_{:.5f}.pth'.format(
                 args.save_dir, 'aa', args.version, adv_complete.shape[0], args.epsilon))
 
